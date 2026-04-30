@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Madison's Cloud Resume API
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 10
+
+Resources:
+
+  GetResumeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: GetResume
+      CodeUri: lambda/
+      Handler: get_resume.handler
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: ResumeData
+      Events:
+        GetResume:
+          Type: Api
+          Properties:
+            Path: /resume
+            Method: GET
+
+Outputs:
+  ResumeApiUrl:
+    Description: Your live Resume API URL
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.us-east-1.amazonaws.com/Prod/resume"
