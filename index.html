@@ -59,6 +59,15 @@ h2 {
 .section {
   margin-top: 30px;
 }
+
+.header {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 </style>
 </head>
 
@@ -87,10 +96,12 @@ async function loadResume() {
     const certItems = certs.items || [];
 
     document.getElementById("content").innerHTML = `
-      <h1>${meta.name || ""}</h1>
-      <div class="muted">${meta.title || ""}</div>
-      <div class="muted">${meta.location || ""}</div>
-      <div class="muted">${meta.email || ""} | ${meta.phone || ""}</div>
+      <div class="header">
+  <h1>${meta.name || ""}</h1>
+  <div class="title">${meta.title || ""}</div>
+  <div class="muted">${meta.location || ""}</div>
+  <div class="muted">${meta.email || ""} | ${meta.phone || ""}</div>
+</div>
 
       <div class="section">
         <h2>Experience</h2>
