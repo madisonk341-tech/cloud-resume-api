@@ -75,7 +75,24 @@ h2 {
 
 .title {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.company {
+  color: #444;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.dates {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 8px;
 }
 </style>
 </head>
@@ -116,8 +133,9 @@ async function loadResume() {
         <h2>Experience</h2>
         ${jobs.map(j => `
           <div class="item">
-            <div class="title">${j.role} - ${j.company}</div>
-            <div class="muted">${j.dates}</div>
+            <<div class="title">${j.role}</div>
+            <div class="company">${j.company}</div>
+            <div class="dates">${j.dates}</div>
             <ul>
               ${(j.highlights || []).map(h => `<li>${h}</li>`).join("")}
             </ul>
