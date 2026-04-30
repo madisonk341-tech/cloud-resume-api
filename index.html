@@ -4,78 +4,61 @@
   <meta charset="UTF-8">
   <title>Madison Kennedy Resume</title>
   <style>
-    body {
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px auto;
+  max-width: 800px;
+  line-height: 1.6;
   background: #fafafa;
+  color: #222;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 5px;
 }
 
 h2 {
   font-size: 20px;
+  margin-top: 30px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.muted {
+  color: #666;
+  font-size: 14px;
 }
 
 .item {
-  transition: all 0.2s ease;
-}
-  body {
-    font-family: Arial, sans-serif;
-    margin: 40px auto;
-    max-width: 800px;
-    line-height: 1.6;
-    background: #f9f9f9;
-    color: #222;
-  }
-h1 {
-  font-size: 32px;
-}
-
-header {
-  margin-bottom: 30px;
-}
-  h1 {
-    margin-bottom: 5px;
-  }
-
-  h2 {
-    margin-top: 30px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-  }
-
-  .muted {
-    color: #666;
-    font-size: 14px;
-  }
-
-  .item {
   background: white;
   padding: 15px;
   border-radius: 6px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
+  transition: all 0.2s ease;
 }
 
-  .skills span {
-    display: inline-block;
-    background: #eee;
-    padding: 6px 10px;
-    margin: 4px;
-    border-radius: 5px;
-  }
-
-  .item:hover {
+.item:hover {
   border-color: #999;
 }
 
 .skills span {
+  display: inline-block;
+  background: #eee;
+  padding: 6px 10px;
+  margin: 4px;
+  border-radius: 5px;
   transition: 0.2s;
 }
 
 .skills span:hover {
   background: #ddd;
 }
-<h1>${meta.name}</h1>
-<div class="muted">${meta.title}</div>
-<div class="muted">${meta.location}</div>
-<div class="muted">${meta.email} | ${meta.phone}</div>
+
+.section {
+  margin-top: 30px;
+}
 </style>
 </head>
 
