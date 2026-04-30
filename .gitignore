@@ -1,0 +1,4 @@
+.aws-sam/
+samconfig.toml
+*.json
+!bucket-policy.json
