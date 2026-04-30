@@ -22,7 +22,7 @@ A serverless resume API built on AWS as part of the Cloud Resume Challenge.
 
 \## Live Links
 
-\- 🌐 Website: http://madison-kennedy-resume.s3-website-us-east-1.amazonaws.com
+\- 🌐 Website: https://madison-kennedy-resume.s3.us-east-1.amazonaws.com/index.html
 
 \- 🔗 API: https://ihxkbdrihk.execute-api.us-east-1.amazonaws.com/Prod/resume
 
