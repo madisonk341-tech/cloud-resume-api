@@ -1,324 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Madison Kennedy — Resume</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <title>Madison Kennedy Resume</title>
   <style>
-    :root {
-      --bg: #0a0a0f;
-      --surface: #13131a;
-      --border: #1e1e2e;
-      --accent: #7c6af7;
-      --accent2: #4fc4cf;
-      --text: #e8e8f0;
-      --muted: #6e6e8a;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+      color: #222;
     }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .item {
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+    .muted {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .skills span {
+      display: inline-block;
+      background: #eee;
+      padding: 5px 10px;
+      margin: 3px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
     #loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      gap: 16px;
-      color: var(--muted);
+      font-size: 18px;
     }
-    .spinner {
-      width: 40px; height: 40px;
-      border: 2px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    #resume { display: none; max-width: 860px; margin: 0 auto; padding: 60px 24px; }
-    header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 40px;
-      margin-bottom: 48px;
-    }
-    header h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 400;
-      background: linear-gradient(135deg, var(--text) 0%, var(--accent2) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-    header .title {
-      color: var(--accent);
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .contact-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .contact-row a, .contact-row span {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .contact-row a:hover { color: var(--accent2); }
-    section { margin-bottom: 48px; }
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 12px;
-      transition: border-color 0.2s;
-    }
-    .card:hover { border-color: var(--accent); }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .card-header h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-    }
-    .card-header .dates {
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: var(--bg);
-      padding: 3px 10px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    .card .company {
-      color: var(--accent2);
-      font-size: 0.85rem;
-      margin-bottom: 12px;
-    }
-    .card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .card ul li {
-      font-size: 0.88rem;
-      color: var(--muted);
-      padding-left: 16px;
-      position: relative;
-      line-height: 1.5;
-    }
-    .card ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 0.75rem;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .tag {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 0.8rem;
-      padding: 5px 12px;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-    .tag:hover { border-color: var(--accent); color: var(--accent); }
-    .tag.cloud { border-color: #2a3a4a; color: var(--accent2); }
-    .cert-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-    .cert-item:last-child { border-bottom: none; }
-    .cert-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-    .powered {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.75rem;
-      padding: 32px 0 16px;
-      border-top: 1px solid var(--border);
-      margin-top: 48px;
-    }
-    .powered span { color: var(--accent2); }
   </style>
 </head>
+
 <body>
 
-<div id="loading">
-  <div class="spinner"></div>
-  <p>Fetching resume from AWS...</p>
-</div>
-
-<div id="resume"></div>
+<div id="loading">Loading resume...</div>
+<div id="content"></div>
 
 <script>
-  const API = 'https://ihxkbdrihk.execute-api.us-east-1.amazonaws.com/Prod/resume';
+const API = "https://ihxkbdrihk.execute-api.us-east-1.amazonaws.com/Prod/resume";
 
-  async function loadResume() {
-    try {
-      const res = await fetch(API);
-      const d = await res.json();
+async function loadResume() {
+  try {
+    const res = await fetch(API);
+    const data = await res.json();
 
-      const meta  = d.meta          || {};
-      const skills = d.skills       || {};
-      const edu   = d.education     || {};
-      const certs = d.certifications|| {};
-      const exp   = d.experience    || {};
-      const proj  = d.projects      || {};
+    const meta = data.meta || {};
+    const exp = data.experience || {};
+    const edu = data.education || {};
+    const skills = data.skills || {};
+    const projects = data.projects || {};
+    const certs = data.certifications || {};
 
-      const jobs    = Array.isArray(exp.jobs)   ? exp.jobs   : [];
-      const projItems = Array.isArray(proj.items) ? proj.items : [];
-      const certItems = Array.isArray(certs.items)? certs.items: [];
-      const coursework = Array.isArray(edu.coursework) ? edu.coursework : [];
-      const languages = Array.isArray(skills.languages) ? skills.languages : [];
-      const tools     = Array.isArray(skills.tools)     ? skills.tools     : [];
-      const concepts  = Array.isArray(skills.concepts)  ? skills.concepts  : [];
-      const cloud     = Array.isArray(skills.cloud)     ? skills.cloud     : [];
+    const jobs = exp.jobs || [];
+    const projItems = projects.items || [];
+    const certItems = certs.items || [];
 
-      document.getElementById('resume').innerHTML = `
-        <header>
-          <h1>${meta.name || ''}</h1>
-          <div class="title">${meta.title || ''}</div>
-          <div class="contact-row">
-            <span>📍 ${meta.location || ''}</span>
-            <a href="mailto:${meta.email || ''}">${meta.email || ''}</a>
-            <span>📞 ${meta.phone || ''}</span>
+    document.getElementById("content").innerHTML = `
+      <h1>${meta.name || ""}</h1>
+      <div class="muted">${meta.title || ""}</div>
+      <div class="muted">${meta.location || ""}</div>
+      <div class="muted">${meta.email || ""} | ${meta.phone || ""}</div>
+
+      <div class="section">
+        <h2>Experience</h2>
+        ${jobs.map(j => `
+          <div class="item">
+            <div class="title">${j.role} - ${j.company}</div>
+            <div class="muted">${j.dates}</div>
+            <ul>
+              ${(j.highlights || []).map(h => `<li>${h}</li>`).join("")}
+            </ul>
           </div>
-        </header>
+        `).join("")}
+      </div>
 
-        <section>
-          <div class="section-label">Experience</div>
-          ${jobs.map(j => `
-            <div class="card">
-              <div class="card-header">
-                <h3>${j.role}</h3>
-                <span class="dates">${j.dates}</span>
-              </div>
-              <div class="company">${j.company}</div>
-              <ul>${(Array.isArray(j.highlights) ? j.highlights : []).map(h => `<li>${h}</li>`).join('')}</ul>
-            </div>
-          `).join('')}
-        </section>
-
-        <section>
-          <div class="section-label">Projects</div>
-          ${projItems.map(p => `
-            <div class="card">
-              <div class="card-header">
-                <h3>${p.name}</h3>
-                <span class="dates">${p.status}</span>
-              </div>
-              <ul>${(Array.isArray(p.highlights) ? p.highlights : []).map(h => `<li>${h}</li>`).join('')}</ul>
-            </div>
-          `).join('')}
-        </section>
-
-        <section>
-          <div class="section-label">Skills</div>
-          <div class="card">
-            <div class="tags" style="margin-bottom:12px">
-              ${languages.map(s => `<span class="tag">${s}</span>`).join('')}
-              ${tools.map(s => `<span class="tag">${s}</span>`).join('')}
-              ${concepts.map(s => `<span class="tag">${s}</span>`).join('')}
-            </div>
-            <div class="tags">
-              ${cloud.map(s => `<span class="tag cloud">☁️ ${s}</span>`).join('')}
-            </div>
+      <div class="section">
+        <h2>Projects</h2>
+        ${projItems.map(p => `
+          <div class="item">
+            <div class="title">${p.name}</div>
+            <ul>
+              ${(p.highlights || []).map(h => `<li>${h}</li>`).join("")}
+            </ul>
           </div>
-        </section>
+        `).join("")}
+      </div>
 
-        <section>
-          <div class="section-label">Education</div>
-          <div class="card">
-            <div class="card-header">
-              <h3>${edu.school || ''}</h3>
-              <span class="dates">Expected ${edu.expected || ''}</span>
-            </div>
-            <div class="company">${edu.degree || ''}</div>
-            <div style="margin-top:12px">
-              <div class="tags">
-                ${coursework.map(c => `<span class="tag">${c}</span>`).join('')}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-label">Certifications</div>
-          <div class="card">
-            ${certItems.map(c => `
-              <div class="cert-item">
-                <div class="cert-dot"></div>
-                <span>${c}</span>
-              </div>
-            `).join('')}
-          </div>
-        </section>
-
-        <div class="powered">
-          Powered by <span>AWS Lambda</span> · <span>API Gateway</span> · <span>DynamoDB</span> · <span>S3</span>
+      <div class="section">
+        <h2>Skills</h2>
+        <div class="skills">
+          ${(skills.languages || []).map(s => `<span>${s}</span>`).join("")}
+          ${(skills.tools || []).map(s => `<span>${s}</span>`).join("")}
+          ${(skills.concepts || []).map(s => `<span>${s}</span>`).join("")}
+          ${(skills.cloud || []).map(s => `<span>${s}</span>`).join("")}
         </div>
-      `;
+      </div>
 
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('resume').style.display = 'block';
+      <div class="section">
+        <h2>Education</h2>
+        <div class="item">
+          <div class="title">${edu.school || ""}</div>
+          <div class="muted">${edu.degree || ""}</div>
+          <div class="muted">Expected ${edu.expected || ""}</div>
+        </div>
+      </div>
 
-    } catch (err) {
-      document.getElementById('loading').innerHTML =
-        `<p style="color:#f87171">Failed to load resume: ${err.message}</p>`;
-      console.error(err);
-    }
+      <div class="section">
+        <h2>Certifications</h2>
+        <ul>
+          ${certItems.map(c => `<li>${c}</li>`).join("")}
+        </ul>
+      </div>
+    `;
+
+    document.getElementById("loading").style.display = "none";
+
+  } catch (err) {
+    document.getElementById("loading").innerText = "Error loading resume.";
+    console.error(err);
   }
+}
 
-  loadResume();
+loadResume();
 </script>
+
 </body>
 </html>
